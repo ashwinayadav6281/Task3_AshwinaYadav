@@ -1,0 +1,13 @@
+<launch>
+  <param name="robot_description" command="cat $(find rover_description)/urdf/rover.urdf"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rover_description)/urdf/rover.rviz"/>
+  <node name="gazebo" pkg="gazebo_ros" type="gazebo" args="-urdf -model rover -param robot_description"/>
+</launch>
+
+
+cd ~/rosfoxy_ws
+rosfoxy_make
+source devel/setup.bash
+roslaunch rover_description display.launch
